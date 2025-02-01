@@ -1,24 +1,14 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProductsPage from './pages/ProductsPage';
+import CreatePage from './pages/CreatePage';
+import EditDeletePage from './pages/EditDeletePage';
 import Navbar from './components/Navbar';
+import EditListPage from './pages/EditListPage';
 
 const App: React.FC = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/');
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <Router>
       <Navbar />
@@ -26,6 +16,9 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/edit" element={<EditListPage />} />
+        <Route path="/edit/:id" element={<EditDeletePage />} />
       </Routes>
     </Router>
   );
